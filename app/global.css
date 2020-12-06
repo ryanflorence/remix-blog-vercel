@@ -1,0 +1,12 @@
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.markdown-body {
+  max-width: 40rem;
+  margin: auto;
+}

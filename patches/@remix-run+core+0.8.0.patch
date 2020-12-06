@@ -1,0 +1,13 @@
+diff --git a/node_modules/@remix-run/core/compiler.js b/node_modules/@remix-run/core/compiler.js
+index 97dbbbf..4c544cd 100644
+--- a/node_modules/@remix-run/core/compiler.js
++++ b/node_modules/@remix-run/core/compiler.js
+@@ -263,7 +263,7 @@ function getCommonOutputOptions(build) {
+           packageName += "/" + pieces[index + 2];
+         }
+ 
+-        return "node_modules/" + packageName;
++        return "modules/" + packageName;
+       }
+ 
+       return undefined;
