@@ -19,7 +19,7 @@ exports.getPost = async (name) => {
 
 exports.getPosts = async () => {
   let files =
-    true || process.env.NODE_ENV === "production"
+    process.env.NODE_ENV === "production"
       ? await getPostsFromGitHub()
       : await getPostsFromFS();
 
@@ -49,7 +49,6 @@ async function getPostsFromGitHub() {
     },
   });
   let files = await res.json();
-  console.log({ files });
   return Promise.all(
     files.map(async ({ name, download_url }) => {
       let contentsRes = await fetch(download_url);
@@ -66,7 +65,7 @@ async function getPostFromFS(param) {
 }
 
 async function getPostFromGitHub(name) {
-  let url = `https://raw.githubusercontent.com/${config.repo}/${config.branch}/${name}.md`;
+  let url = `https://raw.githubusercontent.com/${config.repo}/${config.branch}/app/posts/${name}.md`;
   let res = await fetch(url);
   return res.text();
 }
