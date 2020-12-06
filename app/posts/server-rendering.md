@@ -1,5 +1,5 @@
 ---
-title: Server Side Rendering
+title: Server Side Rendering (SSR)
 published: 2020-12-06 14:00:00.00 -7
 description: React Router can render on the server, here's now.
 ---
