@@ -27,6 +27,9 @@ export default function App() {
         <Routes />
         {/* there's little reason to include JS on a markdown blog */}
         {/* <Scripts /> */}
+        <footer>
+          <p>NODE_ENV: {process.env.NODE_ENV}</p>
+        </footer>
       </body>
     </html>
   );

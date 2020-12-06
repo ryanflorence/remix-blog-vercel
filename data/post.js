@@ -1,5 +1,6 @@
 const fs = require("fs").promises;
 const path = require("path");
+const sortBy = require("sort-by");
 const parseFrontMatter = require("front-matter");
 const remark = require("remark");
 const html = require("remark-html");
@@ -14,7 +15,11 @@ exports.getPost = async (name) => {
   let { body, attributes } = parseFrontMatter(contents);
   let result = await remark().use(html).process(body);
 
-  return { name, html: result.contents, attributes };
+  return {
+    name,
+    html: result.contents,
+    attributes,
+  };
 };
 
 exports.getPosts = async () => {
@@ -23,10 +28,12 @@ exports.getPosts = async () => {
       ? await getPostsFromGitHub()
       : await getPostsFromFS();
 
-  return files.map(({ name, contents }) => {
-    let { _, attributes } = parseFrontMatter(contents);
-    return { name: name.replace(/\.md$/, ""), attributes };
-  });
+  return files
+    .map(({ name, contents }) => {
+      let { _, attributes } = parseFrontMatter(contents);
+      return { name: name.replace(/\.md$/, ""), attributes };
+    })
+    .sort(sortBy("-attributes.published"));
 };
 
 ////////////////////////////////////////////////////////////////////////////////

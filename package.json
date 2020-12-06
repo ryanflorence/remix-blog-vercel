@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node index.js",
-    "dev": "concurrently \"remix run\" \"vercel dev\"",
+    "dev": "concurrently \"remix run\" \"NODE_ENV=development vercel dev\"",
     "build": "remix build",
     "vercel-build": "npm run build",
     "postinstall": "patch-package"

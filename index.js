@@ -1,6 +1,5 @@
 const express = require("express");
 const { createRequestHandler } = require("@remix-run/express");
-const sortBy = require("sort-by");
 const { getPosts } = require("./data/post");
 const config = require("./blog.config.json");
 
@@ -10,7 +9,6 @@ app.get("/feed.xml", async (req, res) => {
   let posts = await getPosts();
 
   let entries = posts
-    .sort(sortBy("-attributes.published"))
     .map((post) => {
       let href = `${config.url}/${post.name}`;
       return `
@@ -39,6 +37,8 @@ app.get("/feed.xml", async (req, res) => {
   res.set("content-type", "application/xml");
   res.send(text);
 });
+
+console.log({ nodeEnv: process.env.NODE_ENV });
 
 app.all(
   "*",

@@ -9,17 +9,18 @@ export function headers({ loaderHeaders }) {
 
 export function meta({ data: post }) {
   return {
-    title: `${post.attributes.title}`,
+    title: post.attributes.title,
   };
 }
 
-export default function Index() {
+export default function Post() {
   let post = useRouteData();
   return (
     <>
       <header>
         <h1>{post.attributes.title}</h1>
         <p>{post.attributes.description}</p>
+        <p>ENV: {post.env}</p>
       </header>
       <main dangerouslySetInnerHTML={{ __html: post.html }} />
     </>
