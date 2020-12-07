@@ -1,7 +1,7 @@
 ---
 title: Server Side Rendering (SSR)
 published: 2020-12-06 14:00:00.00 -7
-description: React Router can render on the server, here's now.
+description: React Router can render on the server, here's how to do it.
 ---
 
 Rendering on the server is a bit different since it's all stateless. The basic idea is that we wrap the app in a stateless [`<StaticRouter>`][staticrouter] instead of a [`<BrowserRouter>`][browserrouter]. We pass in the requested url from the server so the routes can match and a `context` prop we'll discuss next.
