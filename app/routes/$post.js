@@ -20,7 +20,6 @@ export default function Post() {
       <header>
         <h1>{post.attributes.title}</h1>
         <p>{post.attributes.description}</p>
-        <p>ENV: {post.env}</p>
       </header>
       <main dangerouslySetInnerHTML={{ __html: post.html }} />
     </>

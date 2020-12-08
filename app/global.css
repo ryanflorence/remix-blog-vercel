@@ -1,12 +1,109 @@
-:focus:not(:focus-visible) {
-  outline: none;
+header {
+  background: hsl(208deg 32% 10%);
+  color: #fcfcfc;
+  border: none;
 }
 
-body {
-  font-family: sans-serif;
+header h1 {
+  color: #fff;
 }
 
-.markdown-body {
-  max-width: 40rem;
-  margin: auto;
+h2 {
+  border: none;
+}
+
+h1,
+h2 {
+  letter-spacing: -1px;
+}
+
+/* code[class*="language-"],
+pre[class*="language-"] {
+  font-family: "Source Code Pro", Consolas, "Liberation Mono", Menlo, Courier,
+    monospace;
+} */
+
+.gatsby-highlight-code-line {
+  display: block;
+  background: #f6f7f8;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+}
+
+pre[class*="language-"] {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 3rem;
+}
+
+pre[class*="language-"] > code[class*="language-"] {
+  display: block;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.line-numbers-rows {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+pre[class*="language-"].line-numbers {
+  position: relative;
+  padding-left: 3.25rem;
+  counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+  position: relative;
+  white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+  position: absolute;
+  pointer-events: none;
+  top: 0rem;
+  font-size: 100%;
+  width: 2.5rem !important; /* important because gatsby-remark-prismjs adds inline styles */
+  letter-spacing: -1px;
+  background: #fcfcfc;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.line-numbers-rows > span {
+  display: block;
+  counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+  content: counter(linenumber);
+  color: #ccc;
+  display: block;
+  padding-right: 0.8rem;
+  text-align: right;
+}
+
+a {
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .gatsby-highlight-code-line {
+    background: #333;
+  }
+  .line-numbers-rows > span:before {
+    color: #444;
+  }
+  .line-numbers .line-numbers-rows {
+    background: hsl(208deg 32% 10%);
+  }
+
+  /* override the vscode-dark syntax theme */
+  :not(pre) > code[class*="language-"] {
+    background: hsl(208deg 32% 10%);
+    color: inherit;
+  }
 }

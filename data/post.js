@@ -4,6 +4,7 @@ const sortBy = require("sort-by");
 const parseFrontMatter = require("front-matter");
 const remark = require("remark");
 const html = require("remark-html");
+const gatsbyPrism = require("gatsby-remark-prismjs");
 const config = require("../blog.config.json");
 
 exports.getPost = async (name) => {
@@ -13,7 +14,13 @@ exports.getPost = async (name) => {
       : await getPostFromFS(name);
 
   let { body, attributes } = parseFrontMatter(contents);
-  let result = await remark().use(html).process(body);
+  let result = await remark()
+    .use(() => (markdownAST) => {
+      gatsbyPrism({ markdownAST }, { showLineNumbers: true });
+      return markdownAST;
+    })
+    .use(html)
+    .process(body);
 
   return {
     name,

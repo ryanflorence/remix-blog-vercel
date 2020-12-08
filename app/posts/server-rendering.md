@@ -6,7 +6,7 @@ description: React Router can render on the server, here's how to do it.
 
 Rendering on the server is a bit different since it's all stateless. The basic idea is that we wrap the app in a stateless [`<StaticRouter>`][staticrouter] instead of a [`<BrowserRouter>`][browserrouter]. We pass in the requested url from the server so the routes can match and a `context` prop we'll discuss next.
 
-```jsx
+```jsx{3,8}
 // client
 <BrowserRouter>
   <App/>
@@ -19,11 +19,20 @@ Rendering on the server is a bit different since it's all stateless. The basic i
 >
   <App/>
 </StaticRouter>
+
+let matches = useMatches();
+React.useEffect(() => {
+  track({
+    url: leaf.pathname,
+    route: leaf.route.path,
+    params: leaf.params
+  })
+}, [matches])
 ```
 
 When you render a [`<Redirect>`][redirect] on the client, the browser history changes state and we get the new screen. In a static server environment we can't change the app state. Instead, we use the `context` prop to find out what the result of rendering was. If we find a `context.url`, then we know the app redirected. This allows us to send a proper redirect from the server.
 
-```jsx
+```jsx{10}
 const context = {};
 const markup = ReactDOMServer.renderToString(
   <StaticRouter location={req.url} context={context}>

@@ -22,15 +22,13 @@ export default function Index() {
         <h1>My Neglected Blog</h1>
       </header>
       <main>
-        <ul>
-          {posts.map((post) => (
-            <li key={post.name}>
-              <Link to={post.name}>{post.attributes.title}</Link>
-              <br />
-              <small>{post.attributes.description}</small>
-            </li>
-          ))}
-        </ul>
+        {posts.map((post) => (
+          <p key={post.name}>
+            <Link to={post.name}>{post.attributes.title}</Link>
+            <br />
+            <small>{post.attributes.description}</small>
+          </p>
+        ))}
       </main>
     </div>
   );
